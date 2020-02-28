@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Navbar />
+    <MobileNavbar />
     <v-content>
       <nuxt />
     </v-content>
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import Navbar from '../components/Navbar'
+import MobileNavbar from '../components/MobileNavbar'
 import Footer from '../components/Footer'
 
 export default {
   components: {
-    Navbar,
+    MobileNavbar,
     Footer
   }
 }

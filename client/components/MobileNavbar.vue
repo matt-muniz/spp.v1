@@ -18,14 +18,16 @@
           </v-btn>
         </template>
         <v-list :color="color">
-          <!-- eslint-disable-next-line -->
-          <v-list-item class="text-right" v-for="(item, i) in items" :key="i">
-            <v-list-item-title>
-              <nuxt-link :to="item.to">
-                {{ item.title }}
-              </nuxt-link>
-            </v-list-item-title>
-          </v-list-item>
+          <v-list-item-group v-model="item" color="primary">
+            <!-- eslint-disable-next-line -->
+            <v-list-item class="text-right" v-for="(item, i) in items" :key="i">
+              <v-list-item-title>
+                <nuxt-link :to="item.to">
+                  {{ item.title }}
+                </nuxt-link>
+              </v-list-item-title>
+            </v-list-item>
+          </v-list-item-group>
         </v-list>
       </v-menu>
     </v-app-bar>
@@ -37,10 +39,11 @@ export default {
   data() {
     return {
       height: '75',
-      color: 'rgba(0,191,255, 0.3)',
+      color: '#c8ecff',
       clipped: false,
       drawer: false,
       fixed: false,
+      item: 0,
       items: [
         {
           icon: 'mdi-apps',
@@ -50,27 +53,27 @@ export default {
         {
           icon: 'mdi-chart-bubble',
           title: 'About Us',
-          to: '/inspire'
+          to: '/about-us'
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Zumbini',
-          to: '/inspire'
+          to: '/zumbini'
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Birthday Parties',
-          to: '/inspire'
+          to: '/parties'
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'Daily Admissions',
-          to: '/inspire'
+          to: '/admissions'
         },
         {
           icon: 'mdi-chart-bubble',
           title: 'In The News',
-          to: '/inspire'
+          to: '/in-the-news'
         }
       ],
       miniVariant: false,
@@ -93,7 +96,10 @@ a {
   text-decoration: none;
   color: rgba(152, 58, 204, 0.3);
 }
-.active {
-  color: green;
+.nuxt-link-exact-active {
+  color: rgba(152, 58, 204, 1);
+}
+.v-menu__content {
+  box-shadow: none;
 }
 </style>
