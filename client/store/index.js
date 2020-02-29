@@ -1,7 +1,7 @@
 import { isMobile } from 'mobile-device-detect'
 
 const state = () => ({
-  layout: isMobile ? 'mobile' : 'non_mobile'
+  layout: isMobile ? 'mobile' : 'mobile'
 })
 
 const getters = {

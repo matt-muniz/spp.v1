@@ -1,11 +1,9 @@
 <template>
-  <h1>About us</h1>
+  <h1>Add Side Nav Component Here</h1>
 </template>
 
 <script>
-export default {
-  layout: 'navbar'
-}
+export default {}
 </script>
 
 <style></style>

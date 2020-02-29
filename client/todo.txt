@@ -1,0 +1,17 @@
+[] Create home page
+    [x] Mobile nav
+    [] Desktop nav
+    [] Hero section
+        [] Clean safe fun
+        [] Status 
+        [] Video
+    [] Birthday section
+    [] Zumbini
+    [] Additional info
+    [] Calendar
+        [] Show events
+            [] X color for birthdays
+            [] Y color for all other events
+        [] When date clicked show modal
+            [] Show available booking times
+            [] link to booking page
