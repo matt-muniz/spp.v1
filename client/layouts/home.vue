@@ -4,7 +4,6 @@
     <HomeDesktopNav v-else />
     <v-content>
       <nuxt />
-      {{ mobile }}
     </v-content>
     <Footer />
   </v-app>

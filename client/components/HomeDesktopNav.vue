@@ -1,36 +1,43 @@
 <template>
   <div>
-    <v-app-bar fixed flat app :height="height" :color="color">
+    <v-navigation-drawer
+      app
+      permanent
+      width="16rem"
+      :color="color"
+      absolute
+      dark
+    >
       <div class="logo_container">
         <img :src="src" alt="" />
       </div>
-      <v-spacer />
-      <v-menu
-        attach=".v-toolbar__content"
-        absolute
-        transition="slide-y-transition"
-        min-width="100%"
-        :nudge-bottom="height"
-      >
-        <template v-slot:activator="{ on }">
-          <v-btn depressed color="rgba(0,0,0,0)" v-on="on">
-            <v-icon>mdi-menu</v-icon>
-          </v-btn>
-        </template>
-        <v-list :color="color">
-          <v-list-item-group v-model="item" color="primary">
-            <!-- eslint-disable-next-line -->
-            <v-list-item class="text-right" v-for="(item, i) in items" :key="i">
-              <v-list-item-title>
-                <nuxt-link :to="item.to">
-                  {{ item.title }}
-                </nuxt-link>
-              </v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-menu>
-    </v-app-bar>
+      <v-list dense nav class="py-0 text-center">
+        <v-list-item style="width: 6rem; margin: auto;">
+          <v-list-item-content style="margin-right: 1rem">
+            <v-btn icon>
+              <img :src="facebook" alt="" />
+            </v-btn>
+          </v-list-item-content>
+          <v-list-item-content>
+            <v-btn icon>
+              <img :src="instagram" alt="" />
+            </v-btn>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list-item v-for="item in items" :key="item.title" link>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
   </div>
 </template>
 
@@ -38,48 +45,16 @@
 export default {
   data() {
     return {
-      height: '75',
-      color: '#c8ecff',
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      item: 0,
+      src: '/spp_logo.svg',
+      facebook: '/facebook.svg',
+      instagram: '/instagram.svg',
+      drawer: true,
       items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Home',
-          to: '/'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'About Us',
-          to: '/about-us'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Zumbini',
-          to: '/zumbini'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Birthday Parties',
-          to: '/parties'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Daily Admissions',
-          to: '/admissions'
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'In The News',
-          to: '/in-the-news'
-        }
+        { title: 'Dashboard', icon: 'mdi-view-dashboard' },
+        { title: 'Photos', icon: 'mdi-image' },
+        { title: 'About', icon: 'mdi-help-box' }
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      src: '/spp_logo.svg'
+      color: 'primary'
     }
   }
 }
@@ -87,19 +62,10 @@ export default {
 
 <style scoped>
 .logo_container {
-  height: 100%;
+  width: 90%;
+  margin: 2rem auto;
 }
 img {
-  height: 100%;
-}
-a {
-  text-decoration: none;
-  color: red;
-}
-.nuxt-link-exact-active {
-  color: red;
-}
-.v-menu__content {
-  box-shadow: none;
+  width: 100%;
 }
 </style>

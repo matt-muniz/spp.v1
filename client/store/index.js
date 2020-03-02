@@ -11,6 +11,7 @@ export default {
       window.addEventListener('resize', () => {
         if (window.innerWidth < 750) {
           commit('UPDATE_MOBILE', isMobile)
+          console.log(isMobile)
         } else {
           commit('UPDATE_MOBILE', !isMobile)
         }
