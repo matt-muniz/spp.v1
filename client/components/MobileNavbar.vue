@@ -13,7 +13,7 @@
         :nudge-bottom="height"
       >
         <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" @click.stop="rightDrawer = !rightDrawer">
+          <v-btn depressed color="rgba(0,0,0,0)" v-on="on">
             <v-icon>mdi-menu</v-icon>
           </v-btn>
         </template>

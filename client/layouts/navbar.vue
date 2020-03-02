@@ -1,11 +1,7 @@
 <template>
   <v-app>
-    <div v-if="mobile">
-      <MobileNavbar />
-    </div>
-    <div v-else>
-      <DesktopNavbar />
-    </div>
+    <MobileNavbar v-if="mobile" />
+    <DesktopNavbar v-else />
     <v-content>
       <nuxt />
     </v-content>

@@ -13,7 +13,7 @@
         :nudge-bottom="height"
       >
         <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on" @click.stop="rightDrawer = !rightDrawer">
+          <v-btn depressed color="rgba(0,0,0,0)" v-on="on">
             <v-icon>mdi-menu</v-icon>
           </v-btn>
         </template>
@@ -47,22 +47,22 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'Home',
+          title: 'Home Desktop',
           to: '/'
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'About Us',
+          title: 'About Us Desktop',
           to: '/about-us'
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Zumbini',
+          title: 'Zumbini Desktop',
           to: '/zumbini'
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Birthday Parties',
+          title: 'Birthday Parties Desktop',
           to: '/parties'
         },
         {
@@ -97,8 +97,7 @@ a {
   color: rgba(152, 58, 204, 0.3);
 }
 .nuxt-link-exact-active {
-  /* color: rgba(152, 58, 204, 1); */
-  color: red;
+  color: rgba(152, 58, 204, 1);
 }
 .v-menu__content {
   box-shadow: none;
