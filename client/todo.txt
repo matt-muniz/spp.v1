@@ -1,6 +1,10 @@
 [] Create home page
-    [x] Mobile nav
+    [] Mobile nav
+        [] fix resizing
+        [] fix hover affect 
     [] Desktop nav
+        [] fix social links
+        [] Add custom scroll event
     [] Hero section
         [] Clean safe fun
         [] Status 
@@ -15,3 +19,4 @@
         [] When date clicked show modal
             [] Show available booking times
             [] link to booking page
+[] Add custom fonts

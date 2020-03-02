@@ -9,9 +9,8 @@ export default {
     update_mobile({ commit, state }, isMobile) {
       commit('UPDATE_MOBILE', isMobile)
       window.addEventListener('resize', () => {
-        if (window.innerWidth < 750) {
+        if (window.innerWidth < 900) {
           commit('UPDATE_MOBILE', isMobile)
-          console.log(isMobile)
         } else {
           commit('UPDATE_MOBILE', !isMobile)
         }
