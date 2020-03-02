@@ -4,7 +4,7 @@
     <HomeDesktopNav v-else />
     <v-content>
       <nuxt />
-      <h1>{{ mobile }}</h1>
+      {{ mobile }}
     </v-content>
     <Footer />
   </v-app>
@@ -12,7 +12,7 @@
 
 <script>
 /* eslint-disable */
-// import { isMobile } from 'mobile-device-detect'
+import { isMobile } from 'mobile-device-detect'
 import { mapGetters, mapActions } from 'vuex'
 
 import MobileNavbar from '../components/MobileNavbar'
@@ -37,18 +37,9 @@ export default {
     ...mapGetters(['isMobile'])
   },
   mounted() {
-    this.mobile = this.isMobile
-
+    this.update_mobile(isMobile)
     window.addEventListener('resize', () => {
-      if (window.innerWidth < 750) {
-        this.mobile = this.isMobile
-
-        this.update_mobile(false)
-      } else {
-        this.mobile = this.isMobile
-
-        this.update_mobile(true)
-      }
+      this.mobile = this.isMobile
     })
   }
 }

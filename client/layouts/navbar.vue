@@ -10,7 +10,10 @@
 </template>
 
 <script>
+/* eslint-disable */
+
 import { isMobile } from 'mobile-device-detect'
+import { mapActions, mapGetters } from 'vuex'
 
 import MobileNavbar from '../components/MobileNavbar'
 import DesktopNavbar from '../components/DesktopNavbar'
@@ -24,8 +27,20 @@ export default {
   },
   data() {
     return {
-      mobile: isMobile
+      mobile: ''
     }
+  },
+  methods: {
+    ...mapActions(['update_mobile'])
+  },
+  computed: {
+    ...mapGetters(['isMobile'])
+  },
+  mounted() {
+    this.update_mobile(isMobile)
+    window.addEventListener('resize', () => {
+      this.mobile = this.isMobile
+    })
   }
 }
 </script>

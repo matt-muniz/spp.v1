@@ -6,9 +6,15 @@ export default {
     isMobile: (state) => state.mobile
   },
   actions: {
-    update_mobile({ commit }, payload) {
-      commit('UPDATE_MOBILE', payload)
-      console.log(payload)
+    update_mobile({ commit, state }, isMobile) {
+      commit('UPDATE_MOBILE', isMobile)
+      window.addEventListener('resize', () => {
+        if (window.innerWidth < 750) {
+          commit('UPDATE_MOBILE', isMobile)
+        } else {
+          commit('UPDATE_MOBILE', !isMobile)
+        }
+      })
     }
   },
   mutations: {
