@@ -1,7 +1,7 @@
 [] Create home page
     [] Mobile nav
         [x] fix resizing
-        [] fix hover affect 
+        [x] fix hover affect 
     [] Desktop nav
         [] fix social links
         [] Add custom scroll event
