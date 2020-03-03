@@ -13,25 +13,15 @@
       </div>
       <!-- Social icons -->
       <v-list dense nav class="py-0 text-center">
-        <v-list-item>
-          <v-list-item-content
-            v-for="(icon, index) in social_icons"
-            :key="index"
-          >
+        <v-row>
+          <v-col v-for="(icon, i) in social_icons" :key="i" class="pa-0 pb-6">
             <v-hover v-slot:default="{ hover }" open-delay="200">
-              <v-btn
-                class="social_btn"
-                depressed
-                color="rgba(0,0,0,0)"
-                icon
-                :elevation="hover ? 8 : 0"
-              >
-                <img :src="icon.name" alt="" />
+              <v-btn icon :elevation="hover ? 9 : 0">
+                <v-img :src="icon.name"></v-img>
               </v-btn>
             </v-hover>
-          </v-list-item-content>
-        </v-list-item>
-
+          </v-col>
+        </v-row>
         <v-divider></v-divider>
         <!-- Daily admissions -->
         <div class=" py-8">
