@@ -1,6 +1,6 @@
 [] Create home page
     [] Mobile nav
-        [] fix resizing
+        [x] fix resizing
         [] fix hover affect 
     [] Desktop nav
         [] fix social links
