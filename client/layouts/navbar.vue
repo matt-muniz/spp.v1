@@ -35,7 +35,7 @@ export default {
   methods: {
     onResize() {
       const resize =
-        window.innerWidth < 900 ? (this.mobile = true) : (this.mobile = false)
+        window.innerWidth < 1000 ? (this.mobile = true) : (this.mobile = false)
       return resize
     }
   }

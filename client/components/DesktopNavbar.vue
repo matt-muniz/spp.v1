@@ -5,31 +5,13 @@
         <img :src="src" alt="" />
       </div>
       <v-spacer />
-      <v-menu
-        attach=".v-toolbar__content"
-        absolute
-        transition="slide-y-transition"
-        min-width="100%"
-        :nudge-bottom="height"
-      >
-        <template v-slot:activator="{ on }">
-          <v-btn depressed color="rgba(0,0,0,0)" v-on="on">
-            <v-icon>mdi-menu</v-icon>
-          </v-btn>
-        </template>
-        <v-list :color="color">
-          <v-list-item-group v-model="item" color="primary">
-            <!-- eslint-disable-next-line -->
-            <v-list-item class="text-right" v-for="(item, i) in items" :key="i">
-              <v-list-item-title>
-                <nuxt-link :to="item.to">
-                  {{ item.title }}
-                </nuxt-link>
-              </v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-      </v-menu>
+      <v-row justify="end">
+        <nuxt-link v-for="(item, i) in items" :key="i" :to="item.to">
+          <v-col>
+            <span>{{ item.title }}</span>
+          </v-col>
+        </nuxt-link>
+      </v-row>
     </v-app-bar>
   </div>
 </template>
@@ -38,47 +20,34 @@
 export default {
   data() {
     return {
-      height: '75',
+      height: '100',
       color: '#c8ecff',
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      item: 0,
       items: [
         {
-          icon: 'mdi-apps',
           title: 'Home Desktop',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'About Us Desktop',
           to: '/about-us'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'Zumbini Desktop',
           to: '/zumbini'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'Birthday Parties Desktop',
           to: '/parties'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'Daily Admissions',
           to: '/admissions'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'In The News',
           to: '/in-the-news'
         }
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       src: '/spp_logo.svg'
     }
   }
@@ -86,20 +55,25 @@ export default {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
 .logo_container {
   height: 100%;
 }
 img {
   height: 100%;
 }
-a {
-  text-decoration: none;
-  color: rgba(152, 58, 204, 0.3);
-}
-.nuxt-link-exact-active {
-  color: rgba(152, 58, 204, 1);
+.v-list-item__title {
+  color: rgba(152, 58, 204, 0.5);
 }
 .v-menu__content {
   box-shadow: none;
+}
+.highlighted {
+  background: #c8ecff;
+}
+.highlighted .v-list-item__title {
+  color: rgba(152, 58, 204, 1);
 }
 </style>
