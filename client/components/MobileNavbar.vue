@@ -17,15 +17,19 @@
             <v-icon>mdi-menu</v-icon>
           </v-btn>
         </template>
-        <v-list :color="color">
-          <v-list-item-group v-model="item" color="primary">
-            <!-- eslint-disable-next-line -->
-            <v-list-item class="text-right" v-for="(item, i) in items" :key="i">
-              <v-list-item-title>
-                <nuxt-link :to="item.to">
-                  {{ item.title }}
-                </nuxt-link>
-              </v-list-item-title>
+        <v-list :color="color"
+          ><v-list-item-group>
+            <v-list-item
+              v-for="(item, i) in items"
+              :key="i"
+              class="text-right"
+              active-class="highlighted"
+              nuxt
+              :to="item.to"
+            >
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+              </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
         </v-list>
@@ -40,45 +44,34 @@ export default {
     return {
       height: '75',
       color: '#c8ecff',
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      item: 0,
+      nuxt: true,
+      model: 0,
       items: [
         {
-          icon: 'mdi-apps',
           title: 'Home',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'About Us',
           to: '/about-us'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'Zumbini',
           to: '/zumbini'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'Birthday Parties',
           to: '/parties'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'Daily Admissions',
           to: '/admissions'
         },
         {
-          icon: 'mdi-chart-bubble',
           title: 'In The News',
           to: '/in-the-news'
         }
       ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
       src: '/spp_logo.svg'
     }
   }
@@ -86,20 +79,25 @@ export default {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
 .logo_container {
   height: 100%;
 }
 img {
   height: 100%;
 }
-a {
-  text-decoration: none;
-  color: rgba(152, 58, 204, 0.3);
-}
-.nuxt-link-exact-active {
-  color: rgba(152, 58, 204, 1);
+.v-list-item__title {
+  color: rgba(152, 58, 204, 0.5);
 }
 .v-menu__content {
   box-shadow: none;
+}
+.highlighted {
+  background: #c8ecff;
+}
+.highlighted .v-list-item__title {
+  color: rgba(152, 58, 204, 1);
 }
 </style>
