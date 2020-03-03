@@ -49,16 +49,16 @@
             </v-list-item-content>
           </v-list-item>
           <v-hover v-slot:default="{ hover }" open-delay="200">
-            <v-btn
-              depressed
-              color="#00bfff"
-              class="mt-4 px-8"
-              :elevation="hover ? 8 : 0"
-            >
-              <nuxt-link class="white--text font-weight-black" to="/admissions"
-                >More</nuxt-link
+            <nuxt-link to="/admissions">
+              <v-btn
+                depressed
+                color="#00bfff"
+                class="white--text font-weight-black mt-4 px-8"
+                :elevation="hover ? 8 : 0"
               >
-            </v-btn>
+                More
+              </v-btn>
+            </nuxt-link>
           </v-hover>
         </div>
         <!-- Hours -->
