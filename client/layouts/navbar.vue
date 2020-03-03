@@ -1,7 +1,9 @@
 <template>
   <v-app>
-    <MobileNavbar v-if="mobile" />
-    <DesktopNavbar v-else />
+    <div v-resize="onResize">
+      <MobileNavbar v-if="mobile" />
+      <DesktopNavbar v-else />
+    </div>
     <v-content>
       <nuxt />
     </v-content>
@@ -11,9 +13,6 @@
 
 <script>
 /* eslint-disable */
-
-import { isMobile } from 'mobile-device-detect'
-import { mapActions, mapGetters } from 'vuex'
 
 import MobileNavbar from '../components/MobileNavbar'
 import DesktopNavbar from '../components/DesktopNavbar'
@@ -30,17 +29,15 @@ export default {
       mobile: ''
     }
   },
-  methods: {
-    ...mapActions(['update_mobile'])
-  },
-  computed: {
-    ...mapGetters(['isMobile'])
-  },
   mounted() {
-    this.update_mobile(isMobile)
-    window.addEventListener('resize', () => {
-      this.mobile = this.isMobile
-    })
+    this.onResize()
+  },
+  methods: {
+    onResize() {
+      const resize =
+        window.innerWidth < 900 ? (this.mobile = true) : (this.mobile = false)
+      return resize
+    }
   }
 }
 </script>
