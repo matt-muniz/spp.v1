@@ -1,16 +1,19 @@
 <template>
-  <div>
+  <div v-scroll="onScroll">
     <v-navigation-drawer
       transition="slide-x-transition"
       app
       permanent
       width="16rem"
       :color="color"
-      absolute
+      fixed
+      height="100vh"
     >
       <div class="logo_container">
         <img :src="src" alt="" />
       </div>
+      <h1>{{ offsetTop }}</h1>
+
       <!-- Social icons -->
       <v-list dense nav class="py-0 text-center">
         <v-row>
@@ -79,6 +82,7 @@
 export default {
   data() {
     return {
+      offsetTop: 0,
       src: '/spp_logo.svg',
       social_icons: [{ name: '/facebook.svg' }, { name: '/instagram.svg' }],
       drawer: true,
@@ -105,6 +109,18 @@ export default {
         ]
       },
       color: 'rgba(152,58,204, 0.3)'
+    }
+  },
+  mounted() {
+    // this.onScroll()
+  },
+  methods: {
+    onScroll(e) {
+      const navDrawer = document.querySelector('.v-navigation-drawer')
+      let offset = navDrawer.offsetTop
+      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
+      offset = this.offsetTop
+      console.log(offset)
     }
   }
 }
