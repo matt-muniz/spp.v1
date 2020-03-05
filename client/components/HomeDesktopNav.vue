@@ -12,7 +12,6 @@
       <div class="logo_container">
         <img :src="src" alt="" />
       </div>
-      <h1>{{ offsetTop }}</h1>
 
       <!-- Social icons -->
       <v-list dense nav class="py-0 text-center">
@@ -112,18 +111,22 @@ export default {
       color: 'rgba(152,58,204, 0.3)'
     }
   },
+  mounted() {
+    this.setOverflowHidden()
+  },
   methods: {
     onScroll(e) {
-      const navDrawer = document.querySelector('.v-navigation-drawer')
       const navDrawerContent = document.querySelector(
         '.v-navigation-drawer__content'
       )
-      if (window.pageYOffset < navDrawer.scrollHeight) {
-        this.offsetTop =
-          window.pageYOffset || document.documentElement.scrollTop
-        navDrawerContent.scrollTo(0, this.offsetTop)
-        console.log(`${this.offsetTop}  ${navDrawer.scrollHeight}`)
-      }
+      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
+      navDrawerContent.scrollTo(0, this.offsetTop)
+    },
+    setOverflowHidden() {
+      const navDrawerContent = document.querySelector(
+        '.v-navigation-drawer__content'
+      )
+      navDrawerContent.style.overflow = 'hidden'
     }
   }
 }
@@ -148,5 +151,9 @@ img {
 }
 .v-list-item__title {
   color: #00bfff;
+}
+.v-navigation-drawer__content {
+  background: red;
+  overflow-y: hidden;
 }
 </style>
