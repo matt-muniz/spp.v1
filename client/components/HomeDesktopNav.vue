@@ -83,6 +83,7 @@ export default {
   data() {
     return {
       offsetTop: 0,
+      windowHeight: null,
       src: '/spp_logo.svg',
       social_icons: [{ name: '/facebook.svg' }, { name: '/instagram.svg' }],
       drawer: true,
@@ -111,16 +112,18 @@ export default {
       color: 'rgba(152,58,204, 0.3)'
     }
   },
-  mounted() {
-    // this.onScroll()
-  },
   methods: {
     onScroll(e) {
       const navDrawer = document.querySelector('.v-navigation-drawer')
-      let offset = navDrawer.offsetTop
-      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
-      offset = this.offsetTop
-      console.log(offset)
+      const navDrawerContent = document.querySelector(
+        '.v-navigation-drawer__content'
+      )
+      if (window.pageYOffset < navDrawer.scrollHeight) {
+        this.offsetTop =
+          window.pageYOffset || document.documentElement.scrollTop
+        navDrawerContent.scrollTo(0, this.offsetTop)
+        console.log(`${this.offsetTop}  ${navDrawer.scrollHeight}`)
+      }
     }
   }
 }

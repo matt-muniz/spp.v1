@@ -4,7 +4,7 @@
         [x] Fix hover affect
     [] Desktop nav
         [x] Navbar
-        [] Fix social links
+        [x] Fix social links
         [] Add custom scroll event
     [] Hero section
         [] Clean safe fun
