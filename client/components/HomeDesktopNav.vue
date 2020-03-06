@@ -108,7 +108,7 @@ export default {
           }
         ]
       },
-      color: 'rgba(152,58,204, 0.3)'
+      color: '#DFC7EF'
     }
   },
   mounted() {

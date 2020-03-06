@@ -21,6 +21,7 @@
             [] Show available booking times
             [] link to booking page
 [] Footer
-    [] Fix so its not fixed
+    [x] Fix so its not fixed
+    [] Add info section
 [] Add custom fonts
 [] Set up headers

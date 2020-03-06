@@ -1,5 +1,5 @@
 <template>
-  <v-footer :fixed="fixed" app inset>
+  <v-footer dark absolut inset>
     <span class="text-right" style="width: 100%"
       >&copy; {{ new Date().getFullYear() }}</span
     >
@@ -10,7 +10,7 @@
 export default {
   data() {
     return {
-      fixed: false
+      fixed: true
     }
   }
 }
