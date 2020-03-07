@@ -31,7 +31,7 @@
           </v-row>
           <!-- Status -->
           <v-row justify="center" align="center" class="status">
-            <v-col cols="4" class="text-center">
+            <v-col xl="4" sm="6" xs="6" class="text-center">
               <p class="title">
                 Need a babysitter? We have drop off babysitting services for
                 your convenience. Call today and let your child enjoy playing at
@@ -41,7 +41,17 @@
             </v-col>
           </v-row>
           <!-- Facebook cta -->
-          <v-row></v-row>
+          <v-row justify="center" align="center">
+            <v-col
+              md="4"
+              sm="12"
+              class="text-center font-weight-black body-2"
+              style="color: #3b5998"
+            >
+              <p>Follow us on Facebook</p>
+              <p>For more Updates!</p>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </div>
