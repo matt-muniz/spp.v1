@@ -12,7 +12,7 @@
           <!-- Quote -->
           <v-row justify="center" align="center">
             <v-card
-              class="text-center my-md-10 mb-sm-10 mb-xs-5"
+              class="text-center my-md-10 mb-sm-10 mb-5"
               outlined
               width="80%"
               max-width="500"
