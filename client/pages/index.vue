@@ -12,7 +12,7 @@
           <!-- Quote -->
           <v-row justify="center" align="center">
             <v-card
-              class="text-center my-md-10"
+              class="text-center my-md-10 mb-sm-10 mb-xs-5"
               outlined
               width="80%"
               max-width="500"
@@ -31,8 +31,8 @@
           </v-row>
           <!-- Status -->
           <v-row justify="center" align="center" class="status">
-            <v-col xl="4" sm="6" xs="6" class="text-center">
-              <p class="title">
+            <v-col cols="10" xl="4" sm="6" class="text-center">
+              <p class="lg-title">
                 Need a babysitter? We have drop off babysitting services for
                 your convenience. Call today and let your child enjoy playing at
                 Serendipity's Playhouse and you can enjoy some child free time.
