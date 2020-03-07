@@ -52,6 +52,15 @@
               <p>For more Updates!</p>
             </v-col>
           </v-row>
+          <!-- Video -->
+          <v-row justify="center" align="center">
+            <video
+              src="../static/spp.mp4"
+              style="max-width:500px; width: 80%"
+              class="mx-auto"
+              controls
+            ></video>
+          </v-row>
         </v-col>
       </v-row>
     </div>

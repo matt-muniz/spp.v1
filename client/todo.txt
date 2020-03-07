@@ -7,9 +7,11 @@
         [x] Fix social links
         [x] Add custom scroll event
     [] Hero section
-        [] Clean safe fun
-        [] Status 
+        [x] Clean safe fun
+        [x] Status 
         [] Video
+            [] autoplay
+            [] loop
     [] Birthday section
     [] Zumbini
     [] Additional info
