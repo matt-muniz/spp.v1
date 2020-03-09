@@ -14,15 +14,15 @@
         [] Video
             [] autoplay
             [] loop
-    [] Birthday section
+    [x] Birthday section
         [x] Set mobile row height - 100px
         [x] Set mobile row width - 100%
-    [] Zumbini
-        [] Set mobile row height - 100px
-        [] Set mobile row width - 100%
-    [] Additional info
-        [] Set mobile row height - 100px
-        [] Set mobile row width - 100%
+    [x] Zumbini
+        [x] Set mobile row height - 100px
+        [x] Set mobile row width - 100%
+    [x] Additional info
+        [x] Set mobile row height - 100px
+        [x] Set mobile row width - 100%
     [] Calendar
         [] Show events
             [] X color for birthdays
