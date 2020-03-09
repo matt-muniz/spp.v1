@@ -1,5 +1,4 @@
 <template>
-  <!-- <v-img src="/bg.jpg" height="100vh"> -->
   <v-container>
     <!-- Hero section -->
     <div class="hero ">
@@ -69,11 +68,33 @@
               controls
             ></video>
           </v-row>
+          <v-row justify="center" align="center">
+            <v-col cols="12" class="text-center">
+              <p>The Meaning of Serendipity:</p>
+              <p>Looking for something and finding something even better</p>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </div>
+    <!-- Birthday -->
+    <div class="birthday">
+      <v-row
+        style="height: 150px; max-width: 1000px; width:80%;"
+        class="mx-auto"
+      >
+        <v-img src="/birthday_bg.jpg" height="100%">
+          <v-row justify="center" align="center" style="height: 100%">
+            <div class="hero_title text-center">
+              <p class="headline font-weight-bold">
+                $350 Private Birthday Party Package
+              </p>
+            </div>
+          </v-row>
+        </v-img>
+      </v-row>
+    </div>
   </v-container>
-  <!-- </v-img> -->
 </template>
 
 <script>
