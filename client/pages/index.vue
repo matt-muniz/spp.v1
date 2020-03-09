@@ -87,6 +87,7 @@
           </v-row>
         </v-img>
       </v-row>
+      <h1>in section branch</h1>
       <div v-if="item.listItems">
         <div v-for="(listItem, j) in item.listItems" :key="j">
           <p>{{ listItem.list_1 }}</p>
