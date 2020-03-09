@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable -->
   <v-container v-resize="onResize">
     <!-- Hero section -->
     <div class="hero ">
@@ -76,26 +77,52 @@
     </div>
     <!-- Birthday -->
     <div v-for="(item, i) in sectionItems" :key="i" class="birthday my-10">
-      <v-card class="mx-auto text-sm-center" :width="width" flat>
-        <v-img class="" :height="sectionLabel" :src="item.imgUrl">
+      <v-card class="mx-auto text-center" :width="width" flat>
+        <v-img
+          class="light-blue lighten-2"
+          :height="sectionLabel"
+          :src="item.imgUrl"
+        >
           <v-row justify="center" align="center" style="height: 100%">
-            <v-card-title class="font-weight-bold">{{
-              item.title
-            }}</v-card-title>
+            <v-card-title
+              style="color: white"
+              class="responsiveText font-weight-black"
+              >{{ item.title }}</v-card-title
+            >
+            <!-- <v-overlay absolute color="rgba(0,0,0,0.3)"> </v-overlay> -->
           </v-row>
         </v-img>
+        <v-row>
+          <v-col>
+            <v-card-text v-if="item.listItems" class="text--primary">
+              <div
+                class="listItems"
+                v-for="(listItem, j) in item.listItems"
+                :key="j"
+              >
+                <p>{{ listItem.list_1 }}</p>
+                <p>{{ listItem.list_2 }}</p>
+                <p>{{ listItem.list_3 }}</p>
+                <p>{{ listItem.list_4 }}</p>
+                <p>{{ listItem.list_5 }}</p>
+              </div>
+            </v-card-text>
+            <v-card-text
+              style="max-width: 400px"
+              v-if="item.text"
+              class="text--primary mx-auto"
+            >
+              <p>{{ item.text }}</p>
+              <p class="mt-2">{{ item.text_2 }}</p>
+            </v-card-text>
 
-        <v-card-text class="text--primary">
-          <p>Whitehaven Beach</p>
-
-          <p>Whitsunday Island, Whitsunday Islands</p>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-btn color="orange" text>
-            Share
-          </v-btn>
-        </v-card-actions>
+            <v-card-actions>
+              <v-btn block color="light-blue lighten-3" text>
+                More
+              </v-btn>
+            </v-card-actions>
+          </v-col>
+        </v-row>
       </v-card>
     </div>
   </v-container>
@@ -113,24 +140,52 @@ export default {
         {
           title: '$350 Private Birthday Party Package',
           listItems: [
-            { list_1: 'list one', list_2: 'list two', list_3: 'list three' }
+            {
+              list_1: '2 Hours of fun in our playroom',
+              list_2: '20 children (additional children $10 each)',
+              list_3: '100% private party (Sundays only or after closing)'
+            }
           ],
-          imgUrl: '/birthday_bg.jpg'
+          imgUrl: '/birthdayBg.jpg',
+          url: ''
         },
-        { title: 'two', text: 'some text', imgUrl: '' },
         {
-          title: 'three',
-          listItems: [{ list_1: 'list_one', list_2: 'list two' }],
-          imgUrl: ''
+          title: 'Zumbini',
+          text:
+            "Designed for children 0-4, the Zumbini program combines music, dance and educational tools for 45-minutes of can't-stop, won't-stop bonding and fun.",
+          text_2: 'Saturdays at 9am',
+          imgUrl: '/zumbiniBg.jpg',
+          url: ''
+        },
+        {
+          title: 'Additional Information',
+          listItems: [
+            {
+              list_1: '20% Off Daily Admission for Active Police,',
+              list_2: 'Fire and Us Military',
+              list_3: '(must have valid id)',
+              list_4: 'Grandparents Day every Monday, 10% Off',
+              list_5: 'Socks are Required for Children and Adults'
+            }
+          ],
+          imgUrl: '',
+          url: ''
         }
       ]
     }
   },
-  mounted() {
-    this.onResize()
-  },
+  mounted() {},
   methods: {
     onResize() {
+      const responsiveText = document.querySelectorAll('.responsiveText')
+      responsiveText.forEach((item) => {
+        const text =
+          window.innerWidth > 750
+            ? item.classList.add('display-1')
+            : item.classList.remove('display-1')
+        return text
+      })
+
       const heroHeight =
         window.innerWidth < 750
           ? (this.heroHeight = '140px')
@@ -146,7 +201,8 @@ export default {
       return {
         heroHeight,
         sectionLabel,
-        width
+        width,
+        responsiveText
       }
     }
   }
@@ -164,6 +220,9 @@ p {
 .quote {
   color: #808080;
   border: 1px solid silver;
+}
+.listItems p {
+  margin-top: 0.5rem;
 }
 @media (min-width: 750px) {
   .hero_title {
