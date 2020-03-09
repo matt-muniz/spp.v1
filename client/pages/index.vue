@@ -76,29 +76,30 @@
     </div>
     <!-- Birthday -->
     <div v-for="(item, i) in sectionItems" :key="i" class="birthday my-10">
-      <v-row :style="{ height: sectionLabel, width: width }" class="mx-auto">
-        <v-img :src="item.imgUrl" height="100%">
-          <v-row justify="center" align="center" style="height: 100%">
-            <div class="hero_title text-center">
-              <p class="headline font-weight-bold">
-                {{ item.title }}
-              </p>
-            </div>
-          </v-row>
+      <v-card class="mx-auto" max-width="400" flat>
+        <v-img class="white--text align-end" height="200px" :src="item.imgUrl">
+          <!-- <v-card-title>Top 10 Australian beaches</v-card-title> -->
+          <h1 style="height: 100%">Hello</h1>
         </v-img>
-      </v-row>
-      <h1>in section branch</h1>
-      <div v-if="item.listItems">
-        <div v-for="(listItem, j) in item.listItems" :key="j">
-          <p>{{ listItem.list_1 }}</p>
-          <p>{{ listItem.list_2 }}</p>
-        </div>
-      </div>
-      <div v-if="item.text">
-        <p>
-          {{ item.text }}
-        </p>
-      </div>
+
+        <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
+
+        <v-card-text class="text--primary">
+          <div>Whitehaven Beach</div>
+
+          <div>Whitsunday Island, Whitsunday Islands</div>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-btn color="orange" text>
+            Share
+          </v-btn>
+
+          <v-btn color="orange" text>
+            Explore
+          </v-btn>
+        </v-card-actions>
+      </v-card>
     </div>
   </v-container>
 </template>
