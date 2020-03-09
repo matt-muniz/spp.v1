@@ -7,18 +7,22 @@
         [x] Fix social links
         [x] Add custom scroll event
     [] Hero section
-        [] Clean safe fun
-            [] Set mobile row height - 140px
-            [] Set mobile row width - 100%
+        [x] Clean safe fun
+            [x] Set mobile row height - 140px
+            [x] Set mobile row width - 100%
         [x] Status 
         [] Video
             [] autoplay
             [] loop
     [] Birthday section
+        [x] Set mobile row height - 100px
+        [x] Set mobile row width - 100%
+    [] Zumbini
         [] Set mobile row height - 100px
         [] Set mobile row width - 100%
-    [] Zumbini
     [] Additional info
+        [] Set mobile row height - 100px
+        [] Set mobile row width - 100%
     [] Calendar
         [] Show events
             [] X color for birthdays

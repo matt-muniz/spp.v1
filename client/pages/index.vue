@@ -1,13 +1,10 @@
 <template>
-  <v-container>
+  <v-container v-resize="onResize">
     <!-- Hero section -->
     <div class="hero ">
       <v-row>
         <v-col cols="12">
-          <v-row
-            style="height: 200px; max-width: 1000px; width:80%;"
-            class="mx-auto"
-          >
+          <v-row :style="{ height: heroHeight, width: width }" class="mx-auto">
             <v-img src="/bg.jpg" height="100%">
               <v-row justify="center" align="center" style="height: 100%">
                 <div class="hero_title text-center">
@@ -79,10 +76,7 @@
     </div>
     <!-- Birthday -->
     <div class="birthday">
-      <v-row
-        style="height: 150px; max-width: 1000px; width:80%;"
-        class="mx-auto"
-      >
+      <v-row :style="{ height: sectionLabel, width: width }" class="mx-auto">
         <v-img src="/birthday_bg.jpg" height="100%">
           <v-row justify="center" align="center" style="height: 100%">
             <div class="hero_title text-center">
@@ -99,7 +93,38 @@
 
 <script>
 export default {
-  layout: 'home'
+  layout: 'home',
+  data() {
+    return {
+      heroHeight: '',
+      sectionLabel: '',
+      width: ''
+    }
+  },
+  mounted() {
+    this.onResize()
+  },
+  methods: {
+    onResize() {
+      const heroHeight =
+        window.innerWidth < 750
+          ? (this.heroHeight = '140px')
+          : (this.heroHeight = '200px')
+      const sectionLabel =
+        window.innerWidth < 750
+          ? (this.sectionLabel = '100px')
+          : (this.sectionLabel = '150px')
+      const width =
+        window.innerWidth < 900
+          ? (this.width = '100%')
+          : (this.width = '1000px')
+      return {
+        heroHeight,
+        sectionLabel,
+        width
+      }
+    }
+  }
 }
 </script>
 
