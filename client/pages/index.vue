@@ -75,18 +75,29 @@
       </v-row>
     </div>
     <!-- Birthday -->
-    <div class="birthday">
+    <div v-for="(item, i) in sectionItems" :key="i" class="birthday my-10">
       <v-row :style="{ height: sectionLabel, width: width }" class="mx-auto">
-        <v-img src="/birthday_bg.jpg" height="100%">
+        <v-img :src="item.imgUrl" height="100%">
           <v-row justify="center" align="center" style="height: 100%">
             <div class="hero_title text-center">
               <p class="headline font-weight-bold">
-                $350 Private Birthday Party Package
+                {{ item.title }}
               </p>
             </div>
           </v-row>
         </v-img>
       </v-row>
+      <div v-if="item.listItems">
+        <div v-for="(listItem, j) in item.listItems" :key="j">
+          <p>{{ listItem.list_1 }}</p>
+          <p>{{ listItem.list_2 }}</p>
+        </div>
+      </div>
+      <div v-if="item.text">
+        <p>
+          {{ item.text }}
+        </p>
+      </div>
     </div>
   </v-container>
 </template>
@@ -98,7 +109,22 @@ export default {
     return {
       heroHeight: '',
       sectionLabel: '',
-      width: ''
+      width: '',
+      sectionItems: [
+        {
+          title: '$350 Private Birthday Party Package',
+          listItems: [
+            { list_1: 'list one', list_2: 'list two', list_3: 'list three' }
+          ],
+          imgUrl: '/birthday_bg.jpg'
+        },
+        { title: 'two', text: 'some text', imgUrl: '' },
+        {
+          title: 'three',
+          listItems: [{ list_1: 'list_one', list_2: 'list two' }],
+          imgUrl: ''
+        }
+      ]
     }
   },
   mounted() {
