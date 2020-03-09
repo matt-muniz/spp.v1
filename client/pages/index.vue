@@ -1,18 +1,26 @@
 <template>
+  <!-- <v-img src="/bg.jpg" height="100vh"> -->
   <v-container>
     <!-- Hero section -->
-    <div class="hero">
+    <div class="hero ">
       <v-row>
         <v-col cols="12">
-          <v-row justify="center" align="center" style="height: 200px">
-            <div class="hero_title text-center">
-              <img src="/title.svg" alt="" />
-            </div>
+          <v-row
+            style="height: 200px; max-width: 1000px; width:80%;"
+            class="mx-auto"
+          >
+            <v-img src="/bg.jpg" height="100%">
+              <v-row justify="center" align="center" style="height: 100%">
+                <div class="hero_title text-center">
+                  <img src="/title.svg" alt="" />
+                </div>
+              </v-row>
+            </v-img>
           </v-row>
           <!-- Quote -->
           <v-row justify="center" align="center">
             <v-card
-              class="text-center my-md-10 mb-sm-10 mb-5"
+              class="text-center my-md-10 mb-sm-10 my-5"
               outlined
               width="80%"
               max-width="500"
@@ -65,6 +73,7 @@
       </v-row>
     </div>
   </v-container>
+  <!-- </v-img> -->
 </template>
 
 <script>
