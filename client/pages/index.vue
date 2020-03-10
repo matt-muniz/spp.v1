@@ -176,6 +176,7 @@ export default {
               src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
             }
           ],
+          imgUrl: '/birthdayBg.jpg',
           url: ''
         },
         {
@@ -197,6 +198,7 @@ export default {
               src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
             }
           ],
+          imgUrl: '/zumbiniBg.jpg',
           url: ''
         },
         {
