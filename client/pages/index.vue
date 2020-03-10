@@ -238,11 +238,17 @@ export default {
           ],
           url: ''
         }
-      ]
+      ],
+      focus: '',
+      selectedOpen: false,
+      selectedEvent: {},
+      selectedElement: null,
+      events: [{ name: 'party', start: '2020-03-22' }]
     }
   },
   mounted() {},
   methods: {
+    showEvent() {},
     onResize() {
       const responsiveText = document.querySelectorAll('.responsiveText')
       responsiveText.forEach((item) => {
@@ -262,7 +268,7 @@ export default {
           ? (this.sectionLabel = '100px')
           : (this.sectionLabel = '150px')
       const width =
-        window.innerWidth < 900
+        window.innerWidth < 1300
           ? (this.width = '100%')
           : (this.width = '1000px')
       return {

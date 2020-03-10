@@ -5,8 +5,15 @@
         <v-toolbar color="#333" flat></v-toolbar>
       </v-sheet>
       <v-sheet height="600">
-        <v-calendar ref="calendar"> </v-calendar>
-        <v-menu v-model="selectedOpen" offset-x>
+        <v-calendar
+          ref="calendar"
+          v-model="focus"
+          color="primary"
+          :events="events"
+          @click:event="showEvent"
+        >
+        </v-calendar>
+        <v-menu v-model="selectedOpen" :activator="selectedElement" offset-x>
           <v-card min-width="350px">
             <v-toolbar color="#333"></v-toolbar>
           </v-card>
@@ -30,8 +37,21 @@ export default {
   computed: {},
   mounted() {},
   methods: {
-    showEvent({ event }) {
-      console.log(event)
+    showEvent({ nativeEvent, event }) {
+      const open = () => {
+        this.selectedEvent = event
+        this.selectedElement = nativeEvent.target
+        setTimeout(() => (this.selectedOpen = true), 10)
+      }
+
+      if (this.selectedOpen) {
+        this.selectedOpen = false
+        setTimeout(open, 10)
+      } else {
+        open()
+      }
+
+      nativeEvent.stopPropagation()
     }
   }
 }
