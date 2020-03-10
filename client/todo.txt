@@ -14,11 +14,11 @@
         [] Video
             [] autoplay
             [] loop
-    [] Birthday section
+    [x] Birthday section
         [x] Set mobile row height - 100px
         [x] Set mobile row width - 100%
         [x] Test sldeshow of pictures
-    [] Zumbini
+    [x] Zumbini
         [x] Set mobile row height - 100px
         [x] Set mobile row width - 100%
         [x] Test sldeshow of pictures

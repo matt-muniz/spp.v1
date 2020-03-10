@@ -89,7 +89,6 @@
               class="responsiveText font-weight-black"
               >{{ item.title }}</v-card-title
             >
-            <!-- <v-overlay absolute color="rgba(0,0,0,0.3)"> </v-overlay> -->
           </v-row>
         </v-img>
         <v-row class="my-5 my-sm-10">
@@ -126,7 +125,6 @@
                       v-for="(item, i) in item.items"
                       :key="i"
                       :src="item.src"
-                      transition="fade-transition"
                     ></v-carousel-item>
                   </v-carousel>
                 </div>
@@ -141,12 +139,21 @@
         </v-row>
       </v-card>
     </div>
+    <!-- Calendar -->
+    <v-row :style="{ width: width }" class="mx-auto">
+      <Calendar />
+    </v-row>
   </v-container>
 </template>
 
 <script>
+import Calendar from '../components/Calendar'
+
 export default {
   layout: 'home',
+  components: {
+    Calendar
+  },
   data() {
     return {
       heroHeight: '',
@@ -164,16 +171,19 @@ export default {
           ],
           items: [
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+              src: '/spp/img3.jpg'
             },
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+              src: '/spp/img12.jpg'
             },
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+              src: '/spp/img16.jpg'
             },
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+              src: '/spp/img19.jpg'
+            },
+            {
+              src: '/spp/img26.jpeg'
             }
           ],
           imgUrl: '/birthdayBg.jpg',
@@ -186,16 +196,16 @@ export default {
           text_2: 'Saturdays at 9am',
           items: [
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+              src:
+                'https://images-na.ssl-images-amazon.com/images/I/81EeySZtmUL._SX300_.jpg'
             },
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+              src:
+                'https://i.pinimg.com/originals/3d/3b/56/3d3b56b4c5dfcd665925fb2d82945db7.jpg'
             },
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
-            },
-            {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+              src:
+                'https://www.dayton.com/rf/image_inline/Pub/p11/Dayton/2020/01/20/Images/newsEngin.25168056_Zumbini1.jpg'
             }
           ],
           imgUrl: '/zumbiniBg.jpg',
@@ -214,16 +224,16 @@ export default {
           ],
           items: [
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+              src: '/spp/img27.jpeg'
             },
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+              src: '/spp/img28.jpeg'
             },
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+              src: '/spp/img32.jpg'
             },
             {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+              src: '/spp/img34.jpg'
             }
           ],
           url: ''
