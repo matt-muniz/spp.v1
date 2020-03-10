@@ -59,6 +59,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
+      scrollBarWidth: 30,
       dark: false,
       themes: {
         dark: {

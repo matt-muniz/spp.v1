@@ -77,7 +77,7 @@
     </div>
     <!-- Birthday -->
     <div v-for="(item, i) in sectionItems" :key="i" class="birthday my-10">
-      <v-card class="mx-auto text-center" :width="width" flat>
+      <v-card class="mx-auto text-center text-xl-left" :width="width" flat>
         <v-img
           class="light-blue lighten-2"
           :height="sectionLabel"
@@ -92,30 +92,46 @@
             <!-- <v-overlay absolute color="rgba(0,0,0,0.3)"> </v-overlay> -->
           </v-row>
         </v-img>
-        <v-row>
+        <v-row class="my-10">
           <v-col>
-            <v-card-text v-if="item.listItems" class="text--primary">
-              <div
-                class="listItems"
-                v-for="(listItem, j) in item.listItems"
-                :key="j"
-              >
-                <p>{{ listItem.list_1 }}</p>
-                <p>{{ listItem.list_2 }}</p>
-                <p>{{ listItem.list_3 }}</p>
-                <p>{{ listItem.list_4 }}</p>
-                <p>{{ listItem.list_5 }}</p>
-              </div>
-            </v-card-text>
-            <v-card-text
-              style="max-width: 400px"
-              v-if="item.text"
-              class="text--primary mx-auto"
-            >
-              <p>{{ item.text }}</p>
-              <p class="mt-2">{{ item.text_2 }}</p>
-            </v-card-text>
-
+            <v-row justify="center" align="center">
+              <v-col cols="12" xl="6">
+                <v-card-text v-if="item.listItems" class="text--primary">
+                  <div
+                    class="listItems"
+                    v-for="(listItem, j) in item.listItems"
+                    :key="j"
+                  >
+                    <p>{{ listItem.list_1 }}</p>
+                    <p>{{ listItem.list_2 }}</p>
+                    <p>{{ listItem.list_3 }}</p>
+                    <p>{{ listItem.list_4 }}</p>
+                    <p>{{ listItem.list_5 }}</p>
+                  </div>
+                </v-card-text>
+                <v-card-text v-if="item.text" class="text--primary">
+                  <v-col xl="12" cols="11" sm="6" class="pa-0 mx-auto">
+                    <p>
+                      {{ item.text }}
+                    </p>
+                    <p class="mt-2">{{ item.text_2 }}</p>
+                  </v-col>
+                </v-card-text>
+              </v-col>
+              <v-col cols="12" sm="6" xl="6">
+                <!-- slideshow -->
+                <div v-if="item.items">
+                  <v-carousel hide-delimiters height="250px">
+                    <v-carousel-item
+                      v-for="(item, i) in item.items"
+                      :key="i"
+                      :src="item.src"
+                      transition="fade-transition"
+                    ></v-carousel-item>
+                  </v-carousel>
+                </div>
+              </v-col>
+            </v-row>
             <v-card-actions>
               <v-btn block color="light-blue lighten-3" text>
                 More
@@ -146,7 +162,20 @@ export default {
               list_3: '100% private party (Sundays only or after closing)'
             }
           ],
-          imgUrl: '/birthdayBg.jpg',
+          items: [
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+            }
+          ],
           url: ''
         },
         {
@@ -154,7 +183,20 @@ export default {
           text:
             "Designed for children 0-4, the Zumbini program combines music, dance and educational tools for 45-minutes of can't-stop, won't-stop bonding and fun.",
           text_2: 'Saturdays at 9am',
-          imgUrl: '/zumbiniBg.jpg',
+          items: [
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+            }
+          ],
           url: ''
         },
         {
@@ -168,7 +210,20 @@ export default {
               list_5: 'Socks are Required for Children and Adults'
             }
           ],
-          imgUrl: '',
+          items: [
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
+            },
+            {
+              src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
+            }
+          ],
           url: ''
         }
       ]
