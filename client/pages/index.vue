@@ -92,7 +92,7 @@
             <!-- <v-overlay absolute color="rgba(0,0,0,0.3)"> </v-overlay> -->
           </v-row>
         </v-img>
-        <v-row class="my-10">
+        <v-row class="my-5 my-sm-10">
           <v-col>
             <v-row justify="center" align="center">
               <v-col cols="12" xl="6">
@@ -118,10 +118,10 @@
                   </v-col>
                 </v-card-text>
               </v-col>
-              <v-col cols="12" sm="6" xl="6">
+              <v-col cols="8" sm="4" xl="4">
                 <!-- slideshow -->
                 <div v-if="item.items">
-                  <v-carousel hide-delimiters height="250px">
+                  <v-carousel hide-delimiters :height="heroHeight">
                     <v-carousel-item
                       v-for="(item, i) in item.items"
                       :key="i"
