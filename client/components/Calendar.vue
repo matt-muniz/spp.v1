@@ -10,12 +10,21 @@
           v-model="focus"
           color="primary"
           :events="events"
+          :now="today"
           @click:event="showEvent"
         >
         </v-calendar>
-        <v-menu v-model="selectedOpen" :activator="selectedElement" offset-x>
+        <v-menu v-model="selectedOpen" :activator="selectedElement" offset-y>
           <v-card min-width="350px">
-            <v-toolbar color="#333"></v-toolbar>
+            <v-toolbar>
+              <v-toolbar-title>{{ selectedEvent.name }}</v-toolbar-title>
+            </v-toolbar>
+            <v-card-text>
+              <span> {{ selectedEvent.start }}</span>
+            </v-card-text>
+            <v-card-text>
+              <span> {{ selectedEvent.details }}</span>
+            </v-card-text>
           </v-card>
         </v-menu>
       </v-sheet>
@@ -24,22 +33,50 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   data() {
     return {
+      today: new Date().toISOString().substr(0, 10),
       focus: '',
       selectedOpen: false,
       selectedEvent: {},
       selectedElement: null,
-      events: [{ name: 'party', start: '2020-03-22' }]
+      events: [
+        {
+          name: 'party',
+          start: '2020-03-22',
+          details: 'Birthday party',
+          time: '10-12'
+        },
+        {
+          name: 'party',
+          start: '2020-03-20',
+          details: 'Birthday party',
+          time: '10-12'
+        },
+        {
+          name: 'party',
+          start: '2020-03-15',
+          details: 'Birthday party',
+          time: '10-12'
+        }
+      ]
     }
   },
   computed: {},
   mounted() {},
   methods: {
     showEvent({ nativeEvent, event }) {
+      const setEvent = {
+        name: event.time ? `${event.time} ${event.name}` : `${event.name}`,
+        start: moment(event.start).format('MM/DD/YYYY'),
+        details: event.details,
+        time: event.time
+      }
       const open = () => {
-        this.selectedEvent = event
+        this.selectedEvent = setEvent
         this.selectedElement = nativeEvent.target
         setTimeout(() => (this.selectedOpen = true), 10)
       }
