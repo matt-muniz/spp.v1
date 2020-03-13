@@ -9,7 +9,7 @@
           ref="calendar"
           v-model="focus"
           color="primary"
-          :events="events"
+          :events="eventsData"
           :now="today"
           @click:event="showEvent"
         >
@@ -34,6 +34,7 @@
 
 <script>
 import moment from 'moment'
+import { mapState } from 'vuex'
 
 export default {
   data() {
@@ -43,30 +44,16 @@ export default {
       selectedOpen: false,
       selectedEvent: {},
       selectedElement: null,
-      events: [
-        {
-          name: 'party',
-          start: '2020-03-22',
-          details: 'Birthday party',
-          time: '10-12'
-        },
-        {
-          name: 'party',
-          start: '2020-03-20',
-          details: 'Birthday party',
-          time: '10-12'
-        },
-        {
-          name: 'party',
-          start: '2020-03-15',
-          details: 'Birthday party',
-          time: '10-12'
-        }
-      ]
+      eventsData: []
     }
   },
-  computed: {},
-  mounted() {},
+  computed: {
+    ...mapState('calendar', ['events'])
+  },
+  mounted() {
+    this.eventsData = [...this.events]
+    console.log(this.events.name)
+  },
   methods: {
     showEvent({ nativeEvent, event }) {
       const setEvent = {
