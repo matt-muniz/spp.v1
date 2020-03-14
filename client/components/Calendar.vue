@@ -51,8 +51,16 @@ export default {
     ...mapState('calendar', ['events'])
   },
   mounted() {
-    this.eventsData = [...this.events]
-    console.log(this.events.name)
+    console.log(this.events)
+    this.events.forEach((event) => {
+      this.eventsData.push({
+        name: event.time ? `${event.time} ${event.name}` : `${event.name}`,
+        start: event.start,
+        details: event.details,
+        time: event.time
+      })
+      console.log(event.name)
+    })
   },
   methods: {
     showEvent({ nativeEvent, event }) {

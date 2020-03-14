@@ -16,8 +16,7 @@ export default {
       {
         name: 'party',
         start: '2020-03-15',
-        details: 'Birthday party',
-        time: '10-12'
+        details: 'Birthday party'
       }
     ]
   }),
