@@ -11,6 +11,7 @@
           color="primary"
           :events="eventsData"
           :now="today"
+          :event-color="getEventColor"
           @click:event="showEvent"
           @click:date="toBookingForm"
         >
@@ -64,19 +65,14 @@ export default {
   mounted() {
     this.fetchEvents()
   },
+
   methods: {
     toBookingForm({ date }) {
       this.$router.push({ name: 'bookings', params: { input: date } })
     },
     showEvent({ nativeEvent, event }) {
-      const setEvent = {
-        name: event.name,
-        start: moment(event.start).format('MM/DD/YYYY'),
-        details: event.details,
-        time: event.time
-      }
       const open = () => {
-        this.selectedEvent = setEvent
+        this.selectedEvent = this.setEventData(event)
         this.selectedElement = nativeEvent.target
 
         setTimeout(() => (this.selectedOpen = true), 10)
@@ -97,9 +93,25 @@ export default {
           name: event.time ? `${event.time} ${event.name}` : `${event.name}`,
           start: event.start,
           details: event.details,
-          time: event.time
+          time: '1',
+          color: event.color ? event.color : '#DFC7EF',
+          isExtended: event.isExtended
         })
       })
+    },
+    getEventColor(event) {
+      return event.color
+    },
+    setEventData(event) {
+      const setEvent = {
+        name: event.name,
+        start: moment(event.start).format('MM/DD/YYYY'),
+        details: event.details,
+        time: event.isExtended
+          ? `${event.time} - ${event.time + 2}`
+          : `${event.time} - ${event.time + 3}`
+      }
+      return setEvent
     }
   }
 }
