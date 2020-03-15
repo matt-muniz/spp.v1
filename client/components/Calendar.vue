@@ -1,5 +1,5 @@
 <template>
-  <v-row class="fill-height">
+  <v-row class="fill-height ">
     <v-col>
       <v-sheet height="64">
         <v-toolbar color="#333" flat></v-toolbar>
@@ -12,6 +12,7 @@
           :events="eventsData"
           :now="today"
           @click:event="showEvent"
+          @click:date="toBookingForm"
         >
         </v-calendar>
         <v-menu v-model="selectedOpen" :activator="selectedElement" offset-y>
@@ -25,6 +26,13 @@
             <v-card-text>
               <span> {{ selectedEvent.details }}</span>
             </v-card-text>
+          </v-card>
+        </v-menu>
+        <v-menu v-model="bookingForm" min-width="100%" offset-y>
+          <v-card min-width="350px">
+            <v-toolbar>
+              <v-toolbar-title>home</v-toolbar-title>
+            </v-toolbar>
           </v-card>
         </v-menu>
       </v-sheet>
@@ -44,28 +52,25 @@ export default {
       selectedOpen: false,
       selectedEvent: {},
       selectedElement: null,
-      eventsData: []
+      bookingFromCard: null,
+      eventsData: [],
+      bookingForm: false,
+      bookingTitle: ''
     }
   },
   computed: {
     ...mapState('calendar', ['events'])
   },
   mounted() {
-    console.log(this.events)
-    this.events.forEach((event) => {
-      this.eventsData.push({
-        name: event.time ? `${event.time} ${event.name}` : `${event.name}`,
-        start: event.start,
-        details: event.details,
-        time: event.time
-      })
-      console.log(event.name)
-    })
+    this.fetchEvents()
   },
   methods: {
+    toBookingForm({ date }) {
+      this.$router.push({ name: 'bookings', params: { input: date } })
+    },
     showEvent({ nativeEvent, event }) {
       const setEvent = {
-        name: event.time ? `${event.time} ${event.name}` : `${event.name}`,
+        name: event.name,
         start: moment(event.start).format('MM/DD/YYYY'),
         details: event.details,
         time: event.time
@@ -73,6 +78,7 @@ export default {
       const open = () => {
         this.selectedEvent = setEvent
         this.selectedElement = nativeEvent.target
+
         setTimeout(() => (this.selectedOpen = true), 10)
       }
 
@@ -84,6 +90,16 @@ export default {
       }
 
       nativeEvent.stopPropagation()
+    },
+    fetchEvents() {
+      this.events.forEach((event) => {
+        this.eventsData.push({
+          name: event.time ? `${event.time} ${event.name}` : `${event.name}`,
+          start: event.start,
+          details: event.details,
+          time: event.time
+        })
+      })
     }
   }
 }
