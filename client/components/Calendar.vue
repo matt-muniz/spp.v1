@@ -104,12 +104,16 @@ export default {
         event.time <= 12 ? `${event.time}${b}` : `${stringToInt - 12}${b}`
       const d = a <= 12 ? `${a}${b}` : `${parseInt(a) - 12}${b}`
       formatTime = `${c} - ${d}`
+      // console.log(formatTime)
 
       return formatTime
     },
     fetchEvents() {
+      const testArr = []
       this.events.forEach((event) => {
-        console.log(typeof this.formatTime(event))
+        testArr.push(event.time)
+        const sortedArr = testArr.sort((a, b) => a - b)
+        console.log(sortedArr)
 
         this.eventsData.push({
           name: event.time
