@@ -5,7 +5,7 @@ export default {
         name: 'party',
         start: '2020-03-22',
         details: 'Birthday party',
-        time: '1',
+        time: '13',
         color: 'red',
         isExtended: false
       },
@@ -13,7 +13,7 @@ export default {
         name: 'party',
         start: '2020-03-22',
         details: 'Birthday party',
-        time: '4',
+        time: '16',
         color: 'red',
         isExtended: false
       },

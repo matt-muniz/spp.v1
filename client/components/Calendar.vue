@@ -71,8 +71,13 @@ export default {
       this.$router.push({ name: 'bookings', params: { input: date } })
     },
     showEvent({ nativeEvent, event }) {
+      const setEvent = {
+        name: event.name,
+        start: moment(event.start).format('MM/DD/YYYY'),
+        details: event.details
+      }
       const open = () => {
-        this.selectedEvent = this.setEventData(event)
+        this.selectedEvent = setEvent
         this.selectedElement = nativeEvent.target
 
         setTimeout(() => (this.selectedOpen = true), 10)
@@ -87,13 +92,31 @@ export default {
 
       nativeEvent.stopPropagation()
     },
+    formatTime(event) {
+      const am = 'AM'
+      const pm = 'PM'
+      let formatTime = ''
+
+      const stringToInt = parseInt(event.time)
+      const a = event.isExtended ? `${stringToInt + 3}` : `${stringToInt + 2}`
+      const b = a === '12' ? `${am}` : `${pm}`
+      const c =
+        event.time <= 12 ? `${event.time}${b}` : `${stringToInt - 12}${b}`
+      const d = a <= 12 ? `${a}${b}` : `${parseInt(a) - 12}${b}`
+      formatTime = `${c} - ${d}`
+
+      return formatTime
+    },
     fetchEvents() {
       this.events.forEach((event) => {
+        console.log(typeof this.formatTime(event))
+
         this.eventsData.push({
-          name: event.time ? `${event.time} ${event.name}` : `${event.name}`,
+          name: event.time
+            ? `${this.formatTime(event)} ${event.name}`
+            : `${event.name}`,
           start: event.start,
           details: event.details,
-          time: '1',
           color: event.color ? event.color : '#DFC7EF',
           isExtended: event.isExtended
         })
@@ -102,17 +125,7 @@ export default {
     getEventColor(event) {
       return event.color
     },
-    setEventData(event) {
-      const setEvent = {
-        name: event.name,
-        start: moment(event.start).format('MM/DD/YYYY'),
-        details: event.details,
-        time: event.isExtended
-          ? `${event.time} - ${event.time + 2}`
-          : `${event.time} - ${event.time + 3}`
-      }
-      return setEvent
-    }
+    setEventData(event) {}
   }
 }
 </script>
