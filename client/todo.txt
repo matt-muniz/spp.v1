@@ -29,9 +29,7 @@
         [] Show events
             [] X color for birthdays
             [] Y color for all other events
-        [] When date clicked show modal
-            [] Show available booking times
-            [] link to booking page
+        [x] When date go to booking page passing date data
 [] Footer
     [x] Fix so its not fixed
     [] Add info section
