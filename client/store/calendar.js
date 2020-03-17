@@ -41,9 +41,14 @@ export default {
         color: '',
         isExtended: true
       }
-    ]
+    ],
+    time: []
   }),
-  getters: {},
+  getters: {
+    getTime: (state) => {
+      return state.events.forEach((item) => console.log(item.time))
+    }
+  },
   actions: {},
   mutations: {}
 }

@@ -56,11 +56,12 @@ export default {
       bookingFromCard: null,
       eventsData: [],
       bookingForm: false,
-      bookingTitle: ''
+      bookingTitle: '',
+      testArr: []
     }
   },
   computed: {
-    ...mapState('calendar', ['events'])
+    ...mapState('calendar', ['events', 'time'])
   },
   mounted() {
     this.fetchEvents()
@@ -92,29 +93,35 @@ export default {
 
       nativeEvent.stopPropagation()
     },
-    formatTime(event) {
+    formatTime(events) {
       const am = 'AM'
       const pm = 'PM'
       let formatTime = ''
-
-      const stringToInt = parseInt(event.time)
-      const a = event.isExtended ? `${stringToInt + 3}` : `${stringToInt + 2}`
+      const stringToInt = parseInt(events.time)
+      const a = events.isExtended ? `${stringToInt + 3}` : `${stringToInt + 2}`
       const b = a === '12' ? `${am}` : `${pm}`
       const c =
-        event.time <= 12 ? `${event.time}${b}` : `${stringToInt - 12}${b}`
-      const d = a <= 12 ? `${a}${b}` : `${parseInt(a) - 12}${b}`
+        events.time <= 12 ? `${events.time} ${b}` : `${stringToInt - 12} ${b}`
+      const d = a <= 12 ? `${a} ${b}` : `${parseInt(a) - 12} ${b}`
       formatTime = `${c} - ${d}`
-      // console.log(formatTime)
-
       return formatTime
     },
-    fetchEvents() {
-      const testArr = []
-      this.events.forEach((event) => {
-        testArr.push(event.time)
-        const sortedArr = testArr.sort((a, b) => a - b)
-        console.log(sortedArr)
+    compare(a, b) {
+      const timeA = a.time
+      const timeB = b.time
 
+      let comparison = 0
+
+      if (timeA > timeB) {
+        comparison = 1
+      } else if (timeA < timeB) {
+        comparison = -1
+      }
+      return comparison
+    },
+    fetchEvents() {
+      const sortedEvents = [...this.events].sort(this.compare)
+      sortedEvents.forEach((event) => {
         this.eventsData.push({
           name: event.time
             ? `${this.formatTime(event)} ${event.name}`
@@ -128,8 +135,7 @@ export default {
     },
     getEventColor(event) {
       return event.color
-    },
-    setEventData(event) {}
+    }
   }
 }
 </script>
