@@ -26,10 +26,14 @@
         [x] Set mobile row height - 100px
         [x] Set mobile row width - 100%
     [] Calendar
-        [] Show events
-            [] X color for birthdays
-            [] Y color for all other events
+        [x] Show events
+            [x] X color for birthdays
+            [x] Y color for all other events
         [x] When date go to booking page passing date data
+        [] Set up header
+            [] Show month
+            [] Prev month
+            [] Next month
 [] Footer
     [x] Fix so its not fixed
     [] Add info section
