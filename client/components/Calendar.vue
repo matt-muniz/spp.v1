@@ -8,7 +8,7 @@
         <v-calendar
           ref="calendar"
           v-model="focus"
-          color="primary"
+          color="#5DB7DE"
           :events="eventsData"
           :now="today"
           :event-color="getEventColor"
@@ -43,7 +43,7 @@
 
 <script>
 import moment from 'moment'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -68,6 +68,7 @@ export default {
   },
 
   methods: {
+    ...mapActions('calendar', ['setColor']),
     toBookingForm({ date }) {
       this.$router.push({ name: 'bookings', params: { input: date } })
     },
@@ -110,13 +111,15 @@ export default {
       const sortedEvents = [...this.events].sort((a, b) => a.time - b.time)
 
       sortedEvents.forEach((event) => {
+        this.setColor()
+
         this.eventsData.push({
           name: event.time
             ? `${this.formatTime(event)} ${event.name}`
             : `${event.name}`,
           start: event.start,
           details: event.details,
-          color: event.color ? event.color : '#DFC7EF',
+          color: event.color,
           isExtended: event.isExtended
         })
       })

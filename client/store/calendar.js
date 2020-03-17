@@ -6,7 +6,7 @@ export default {
         start: '2020-03-22',
         details: 'Birthday party',
         time: '13',
-        color: 'red',
+        color: '',
         isExtended: false
       },
       {
@@ -14,7 +14,7 @@ export default {
         start: '2020-03-22',
         details: 'Birthday party',
         time: '16',
-        color: 'red',
+        color: '',
         isExtended: false
       },
       {
@@ -22,8 +22,16 @@ export default {
         start: '2020-03-22',
         details: 'Birthday party',
         time: '10',
-        color: 'red',
+        color: '',
         isExtended: false
+      },
+      {
+        name: 'event',
+        start: '2020-03-20',
+        details: 'Birthday party',
+        time: '16',
+        color: '',
+        isExtended: true
       },
       {
         name: 'party',
@@ -34,7 +42,7 @@ export default {
         isExtended: true
       },
       {
-        name: 'party',
+        name: 'event',
         start: '2020-03-15',
         details: 'Birthday party',
         time: '10',
@@ -44,11 +52,19 @@ export default {
     ],
     time: []
   }),
-  getters: {
-    getTime: (state) => {
-      return state.events.forEach((item) => console.log(item.time))
+  getters: {},
+  actions: {
+    setColor({ commit, getters }) {
+      commit('SET_PARTY_COLOR')
     }
   },
-  actions: {},
-  mutations: {}
+  mutations: {
+    SET_PARTY_COLOR(state) {
+      state.events.filter((event) =>
+        event.name === 'party'
+          ? (event.color = '#DFC7EF')
+          : (event.color = '#4DC0FE')
+      )
+    }
+  }
 }
