@@ -106,21 +106,9 @@ export default {
       formatTime = `${c} - ${d}`
       return formatTime
     },
-    compare(a, b) {
-      const timeA = a.time
-      const timeB = b.time
-
-      let comparison = 0
-
-      if (timeA > timeB) {
-        comparison = 1
-      } else if (timeA < timeB) {
-        comparison = -1
-      }
-      return comparison
-    },
     fetchEvents() {
-      const sortedEvents = [...this.events].sort(this.compare)
+      const sortedEvents = [...this.events].sort((a, b) => a.time - b.time)
+
       sortedEvents.forEach((event) => {
         this.eventsData.push({
           name: event.time
