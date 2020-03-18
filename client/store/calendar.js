@@ -42,6 +42,14 @@ export default {
         isExtended: true
       },
       {
+        name: 'party',
+        start: '2020-04-20',
+        details: 'Birthday party',
+        time: '10',
+        color: '',
+        isExtended: true
+      },
+      {
         name: 'event',
         start: '2020-03-15',
         details: 'Birthday party',
@@ -61,9 +69,11 @@ export default {
   mutations: {
     SET_PARTY_COLOR(state) {
       state.events.filter((event) =>
-        event.name === 'party'
+        event.name === 'party' && event.color === ''
           ? (event.color = '#DFC7EF')
-          : (event.color = '#4DC0FE')
+          : event.name !== 'party' && event.color === ''
+          ? (event.color = '#4DC0FE')
+          : event.color
       )
     }
   }

@@ -25,15 +25,32 @@
     [x] Additional info
         [x] Set mobile row height - 100px
         [x] Set mobile row width - 100%
-    [] Calendar
+    [x] Calendar
         [x] Show events
             [x] X color for birthdays
             [x] Y color for all other events
         [x] When date go to booking page passing date data
-        [] Set up header
-            [] Show month
-            [] Prev month
-            [] Next month
+        [x] Set up header
+            [x] Show month
+            [x] Prev month
+            [x] Next month
+[] Booking page
+    [] Select package
+    [] Choose time
+        [] Set base time
+        [] If additional hour selected remove time slot following
+        [] Each add on
+        [] Num children
+        [] Childs age
+    [] Show modal with selected info and price
+    [] Pay 25% option
+    [] Form
+        [] Name - first and last
+        [] Childs Name
+        [] Email
+        [] Phone
+    [] Connect to tiget payment
+    [] Update the store/ eventually the database
 [] Footer
     [x] Fix so its not fixed
     [] Add info section

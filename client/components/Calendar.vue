@@ -2,18 +2,27 @@
   <v-row class="fill-height ">
     <v-col>
       <v-sheet height="64">
-        <v-toolbar color="#333" flat></v-toolbar>
+        <v-toolbar flat>
+          <v-btn fab text small color="grey darken-2" @click="prev">
+            <v-icon small>mdi-chevron-left</v-icon>
+          </v-btn>
+          <v-btn fab text small color="grey darken-2" @click="next">
+            <v-icon small>mdi-chevron-right</v-icon>
+          </v-btn>
+          <v-toolbar-title>{{ title }}</v-toolbar-title>
+        </v-toolbar>
       </v-sheet>
       <v-sheet height="600">
         <v-calendar
           ref="calendar"
           v-model="focus"
+          class="black--white"
           color="#5DB7DE"
           :events="eventsData"
-          :now="today"
           :event-color="getEventColor"
           @click:event="showEvent"
           @click:date="toBookingForm"
+          @change="formatMonthYear"
         >
         </v-calendar>
         <v-menu v-model="selectedOpen" :activator="selectedElement" offset-y>
@@ -57,18 +66,55 @@ export default {
       eventsData: [],
       bookingForm: false,
       bookingTitle: '',
-      testArr: []
+      testArr: [],
+      start: null,
+      end: null
     }
   },
   computed: {
-    ...mapState('calendar', ['events', 'time'])
+    ...mapState('calendar', ['events', 'time']),
+    title() {
+      const { start, end } = this
+      if (!start || !end) {
+        return ''
+      }
+
+      const startMonth = this.monthFormatter(start)
+
+      const startYear = start.year
+
+      return `${startMonth} ${startYear}`
+    },
+    monthFormatter() {
+      return this.$refs.calendar.getFormatter({
+        timeZone: 'UTC',
+        month: 'long'
+      })
+    }
   },
   mounted() {
     this.fetchEvents()
+    this.$refs.calendar.checkChange()
   },
 
   methods: {
     ...mapActions('calendar', ['setColor']),
+    fetchEvents() {
+      const sortedEvents = [...this.events].sort((a, b) => a.time - b.time)
+
+      sortedEvents.forEach((event) => {
+        this.setColor()
+        const timeString = `${this.formatTime(event)} ${event.name}`
+
+        this.eventsData.push({
+          name: event.time ? timeString : `${event.name}`,
+          start: event.start,
+          details: event.details ? event.details : '',
+          color: event.color,
+          isExtended: event.isExtended
+        })
+      })
+    },
     toBookingForm({ date }) {
       this.$router.push({ name: 'bookings', params: { input: date } })
     },
@@ -107,25 +153,19 @@ export default {
       formatTime = `${c} - ${d}`
       return formatTime
     },
-    fetchEvents() {
-      const sortedEvents = [...this.events].sort((a, b) => a.time - b.time)
-
-      sortedEvents.forEach((event) => {
-        this.setColor()
-
-        this.eventsData.push({
-          name: event.time
-            ? `${this.formatTime(event)} ${event.name}`
-            : `${event.name}`,
-          start: event.start,
-          details: event.details,
-          color: event.color,
-          isExtended: event.isExtended
-        })
-      })
+    formatMonthYear({ start, end }) {
+      this.start = start
+      this.end = end
     },
+
     getEventColor(event) {
       return event.color
+    },
+    prev() {
+      this.$refs.calendar.prev()
+    },
+    next() {
+      this.$refs.calendar.next()
     }
   }
 }

@@ -61,7 +61,6 @@ export default {
     customVariables: ['~/assets/variables.scss'],
     theme: {
       scrollBarWidth: 30,
-      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken4,
