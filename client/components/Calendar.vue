@@ -98,8 +98,10 @@ export default {
   },
 
   methods: {
-    ...mapActions('calendar', ['setColor']),
+    ...mapActions('calendar', ['setColor', 'fetchRootState']),
     fetchEvents() {
+      this.fetchRootState()
+
       const sortedEvents = [...this.events].sort((a, b) => a.time - b.time)
 
       sortedEvents.forEach((event) => {

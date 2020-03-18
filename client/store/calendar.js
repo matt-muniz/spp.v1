@@ -1,72 +1,21 @@
 export default {
   state: () => ({
-    events: [
-      {
-        name: 'party',
-        start: '2020-03-22',
-        details: 'Birthday party',
-        time: '13',
-        color: '',
-        isExtended: false
-      },
-      {
-        name: 'party',
-        start: '2020-03-22',
-        details: 'Birthday party',
-        time: '16',
-        color: '',
-        isExtended: false
-      },
-      {
-        name: 'party',
-        start: '2020-03-22',
-        details: 'Birthday party',
-        time: '10',
-        color: '',
-        isExtended: false
-      },
-      {
-        name: 'event',
-        start: '2020-03-20',
-        details: 'Birthday party',
-        time: '16',
-        color: '',
-        isExtended: true
-      },
-      {
-        name: 'party',
-        start: '2020-03-20',
-        details: 'Birthday party',
-        time: '10',
-        color: '',
-        isExtended: true
-      },
-      {
-        name: 'party',
-        start: '2020-04-20',
-        details: 'Birthday party',
-        time: '10',
-        color: '',
-        isExtended: true
-      },
-      {
-        name: 'event',
-        start: '2020-03-15',
-        details: 'Birthday party',
-        time: '10',
-        color: '',
-        isExtended: true
-      }
-    ],
-    time: []
+    events: []
   }),
   getters: {},
   actions: {
+    fetchRootState({ dispatch, commit, rootState }) {
+      commit('SET_EVENT_STATE', rootState)
+    },
     setColor({ commit, getters }) {
       commit('SET_PARTY_COLOR')
     }
   },
   mutations: {
+    SET_EVENT_STATE(state, payload) {
+      state.events = payload.events
+      // console.log(state.events)
+    },
     SET_PARTY_COLOR(state) {
       state.events.filter((event) =>
         event.name === 'party' && event.color === ''
