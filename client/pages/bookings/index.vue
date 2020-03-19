@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center">
     <v-col cols="11" sm="6">
-      <v-form ref="form" v-model="valid">
+      <v-form ref="form" v-model="valid" lazy-validation>
         <v-select
           :items="items"
           label="What would you like to bookd today?"
@@ -29,14 +29,13 @@
             <div v-if="hidden1">
               <v-checkbox
                 v-model="checkbox"
-                value="15"
+                value="50"
                 :label="`15 min: ${checkbox.toString()}`"
               ></v-checkbox>
               <v-checkbox
                 v-model="checkbox"
-                value="30"
+                value="100"
                 :label="`30 min: ${checkbox.toString()}`"
-                @change="showCharOne"
               ></v-checkbox>
             </div>
             <v-checkbox
@@ -47,14 +46,13 @@
             ></v-checkbox>
             <v-checkbox
               v-model="checkbox"
-              value="15"
+              value="80"
               :label="`15 min: ${checkbox.toString()}`"
             ></v-checkbox>
             <v-checkbox
               v-model="checkbox"
-              value="30"
+              value="160"
               :label="`30 min: ${checkbox.toString()}`"
-              @change="showCharOne"
             ></v-checkbox>
             <v-checkbox
               v-model="checkbox"
@@ -123,15 +121,21 @@ export default {
   name: 'Bookings',
   layout: 'navbar',
   data: () => ({
-    valid: false,
+    valid: true,
     checkbox: [],
     items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     hidden1: false,
     hidden2: false
   }),
   methods: {
-    showCharOne() {
-      this.hidden1 = !this.hidden1
+    showCharOne(val) {
+      console.log(val.includes())
+
+      if (val.includes() !== -1) {
+        console.log('checked')
+      } else {
+        console.log('unchecked')
+      }
     },
     showBothCharSelect() {
       this.hidden1 = !this.hidden1
