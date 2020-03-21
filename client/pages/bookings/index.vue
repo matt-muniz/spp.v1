@@ -20,88 +20,77 @@
 
         <v-row>
           <v-col cols="12" sm="6">
+            <!-- Get Char Time -->
             <v-checkbox
-              v-model="checkbox"
-              value="oneCharacter"
-              :label="`Visit from 1 character: ${checkbox.toString()}`"
+              :label="`Visit from 1 character: ${charTime}`"
               :disabled="disableOneCharCheckbox"
+              multiple
               @change="showCharOne"
             ></v-checkbox>
             <div v-if="showTimeCharOne">
               <v-checkbox
-                v-model="checkbox"
+                v-model="charTime"
                 :value="v1"
                 :disabled="disable15MinCheckbox"
-                :label="`15 minute rental: ${checkbox.toString()}`"
+                :label="`15 minute rental: ${charTime}`"
                 @change="disableCheckbox"
               ></v-checkbox>
               <v-checkbox
-                v-model="checkbox"
-                :value="v2"
+                v-model="charTime"
                 :disabled="disable30MinCheckbox"
-                :label="`30 minute rental: ${checkbox.toString()}`"
+                :value="v2"
+                :label="`30 minute rental: ${charTime}`"
                 @change="disableCheckbox"
               ></v-checkbox>
             </div>
+
             <v-checkbox
-              v-model="checkbox"
-              value="2"
               :disabled="disableTwoCharCheckbox"
-              :label="`Visit from 2 characters: ${checkbox.toString()}`"
+              :label="`Visit from 2 characters: ${charTime}`"
               @change="showBothCharSelect"
             ></v-checkbox>
             <div v-if="showTimeCharTwo">
               <v-checkbox
-                v-model="checkbox"
+                v-model="charTime"
                 :value="v1"
                 :disabled="disable15MinCheckbox"
-                :label="`15 minute rental: ${checkbox.toString()}`"
+                :label="`15 minute rental: ${charTime}`"
                 @change="disableCheckbox"
               ></v-checkbox>
               <v-checkbox
-                v-model="checkbox"
+                v-model="charTime"
                 :value="v2"
                 :disabled="disable30MinCheckbox"
-                :label="`30 minute rental: ${checkbox.toString()}`"
+                :label="`30 minute rental: ${charTime}`"
                 @change="disableCheckbox"
               ></v-checkbox>
             </div>
+            <!-- Get Char Time -->
             <v-checkbox
-              v-model="checkbox"
-              value="oneHour"
-              :label="`Add 1 hour: ${checkbox.toString()}`"
+              v-model="addOns.addHour"
+              true-value="100"
+              false-value=""
+              :label="`Add 1 hour: ${addOns.addHour}`"
             ></v-checkbox>
           </v-col>
           <v-col cols="12" sm="6">
             <v-checkbox
-              v-model="checkbox"
-              value="fullSheet"
-              :label="`Full sheet of cake: ${checkbox.toString()}`"
+              v-model="addOns.fullSheetCake"
+              true-value="30"
+              false-value=""
+              :label="`Full sheet of cake: ${addOns.fullSheetCake}`"
             ></v-checkbox
             ><v-checkbox
-              v-model="checkbox"
-              value="vanilla"
-              :label="`Vanilla cake: ${checkbox.toString()}`"
+              v-model="addOns.vanilla"
+              :true-value="true"
+              false-value=""
+              :label="`Vanilla cake: ${addOns.vanilla}`"
             ></v-checkbox
             ><v-checkbox
-              v-model="checkbox"
-              value="chocolate"
-              :label="`Chocolate cake: ${checkbox.toString()}`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="checkbox"
-              value="chocolate"
-              :label="`Chocolate cake: ${checkbox.toString()}`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="checkbox"
-              value="chocolate"
-              :label="`Chocolate cake: ${checkbox.toString()}`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="checkbox"
-              value="chocolate"
-              :label="`Chocolate cake: ${checkbox.toString()}`"
+              v-model="addOns.chocolate"
+              :true-value="true"
+              false-value=""
+              :label="`Chocolate cake: ${addOns.chocolate}`"
             ></v-checkbox>
           </v-col>
         </v-row>
@@ -149,7 +138,20 @@ export default {
   layout: 'navbar',
   data: () => ({
     valid: true,
-    checkbox: [],
+    charTime: [],
+    addOns: {
+      addHour: '',
+      fullSheetCake: '',
+      vanilla: '',
+      chocolate: '',
+      cottonCandy: '',
+      popcorn: '',
+      snacks: '',
+      jape: '',
+      zumbini: '',
+      pinata: ''
+    },
+    addHour: '',
     items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     showOneCharSelect: false,
     showTwoCharSelect: false,
@@ -182,21 +184,20 @@ export default {
     filterValues(a, b) {
       this.showOneCharSelect ? (this.v1 = a) : (this.v1 = '')
       this.showOneCharSelect ? (this.v2 = b) : (this.v1 = '')
-      const removeV1V2 = this.checkbox.filter(
+      const removeV1V2 = this.charTime.filter(
         (item) => item !== a && item !== b
       )
       this.disable15MinCheckbox = false
       this.disable30MinCheckbox = false
-      this.checkbox = removeV1V2
+      this.charTime = removeV1V2
     },
     disableCheckbox() {
-      const disable30Min = this.checkbox.filter((item) => {
+      const disable30Min = this.charTime.filter((item) => {
         item === '50' || item === '80'
           ? (this.disable30MinCheckbox = true)
           : (this.disable30MinCheckbox = false)
       })
-
-      const disable15Min = this.checkbox.filter((item) =>
+      const disable15Min = this.charTime.filter((item) =>
         item === '100' || item === '160'
           ? (this.disable15MinCheckbox = true)
           : (this.disable15MinCheckbox = false)
