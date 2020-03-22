@@ -25,6 +25,7 @@
               :label="`Visit from 1 character: ${charTime}`"
               :disabled="disableOneCharCheckbox"
               multiple
+              class="mt-0"
               @change="showCharOne"
             ></v-checkbox>
             <div v-if="showTimeCharOne">
@@ -65,32 +66,75 @@
                 @change="disableCheckbox"
               ></v-checkbox>
             </div>
-            <!-- Get Char Time -->
             <v-checkbox
-              v-model="addOns.addHour"
+              v-model="addOns.addHour.value"
               true-value="100"
               false-value=""
-              :label="`Add 1 hour: ${addOns.addHour}`"
+              :label="`${addOns.addHour.title}: ${addOns.addHour.value}`"
+            ></v-checkbox>
+
+            <v-checkbox
+              v-model="addOns.fullSheetCake.value"
+              true-value="30"
+              false-value=""
+              :label="
+                `${addOns.fullSheetCake.title}: ${addOns.fullSheetCake.value}`
+              "
+            ></v-checkbox
+            ><v-checkbox
+              v-model="addOns.vanilla.value"
+              :true-value="true"
+              false-value=""
+              :disabled="addOns.chocolate.value === true"
+              :label="`${addOns.vanilla.title}: ${addOns.vanilla.value}`"
+            ></v-checkbox
+            ><v-checkbox
+              v-model="addOns.chocolate.value"
+              :true-value="true"
+              false-value=""
+              :disabled="addOns.vanilla.value === true"
+              :label="`${addOns.chocolate.title}: ${addOns.chocolate.value}`"
             ></v-checkbox>
           </v-col>
           <v-col cols="12" sm="6">
             <v-checkbox
-              v-model="addOns.fullSheetCake"
-              true-value="30"
+              v-model="addOns.cottonCandy.value"
+              true-value="125"
               false-value=""
-              :label="`Full sheet of cake: ${addOns.fullSheetCake}`"
-            ></v-checkbox
-            ><v-checkbox
-              v-model="addOns.vanilla"
-              :true-value="true"
+              class="mt-0"
+              :label="
+                `${addOns.cottonCandy.title}: ${addOns.cottonCandy.value}`
+              "
+            ></v-checkbox>
+            <v-checkbox
+              v-model="addOns.popcorn.value"
+              true-value="75"
               false-value=""
-              :label="`Vanilla cake: ${addOns.vanilla}`"
-            ></v-checkbox
-            ><v-checkbox
-              v-model="addOns.chocolate"
-              :true-value="true"
+              :label="`${addOns.popcorn.title}: ${addOns.popcorn.value}`"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="addOns.snacks.value"
+              true-value="25"
               false-value=""
-              :label="`Chocolate cake: ${addOns.chocolate}`"
+              :label="`${addOns.snacks.title}: ${addOns.snacks.value}`"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="addOns.jape.value"
+              true-value="225"
+              false-value=""
+              :label="`${addOns.jape.title}: ${addOns.jape.value}`"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="addOns.zumbini.value"
+              true-value="75"
+              false-value=""
+              :label="`${addOns.zumbini.title}: ${addOns.zumbini.value}`"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="addOns.pinata.value"
+              true-value="50"
+              false-value=""
+              :label="`${addOns.pinata.title}: ${addOns.pinata.value}`"
             ></v-checkbox>
           </v-col>
         </v-row>
@@ -140,16 +184,16 @@ export default {
     valid: true,
     charTime: [],
     addOns: {
-      addHour: '',
-      fullSheetCake: '',
-      vanilla: '',
-      chocolate: '',
-      cottonCandy: '',
-      popcorn: '',
-      snacks: '',
-      jape: '',
-      zumbini: '',
-      pinata: ''
+      addHour: { title: 'Add 1 Hour', value: '' },
+      fullSheetCake: { title: 'Full Sheet of Cake', value: '' },
+      vanilla: { title: 'Vanilla Cake', value: '' },
+      chocolate: { title: 'Chocolate Cake', value: '' },
+      cottonCandy: { title: 'Cotton Candy', value: '' },
+      popcorn: { title: 'Popcorn', value: '' },
+      snacks: { title: 'Premium Snacks', value: '' },
+      jape: { title: '1 Hour of Music and Movemnent with Jape', value: '' },
+      zumbini: { title: '30 Minutes of Zumbini' },
+      pinata: { title: 'Piñata', value: '' }
     },
     addHour: '',
     items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
