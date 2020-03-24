@@ -1,12 +1,14 @@
 <template>
   <v-row justify="center">
     <v-col cols="11" sm="6">
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="form" v-model="valid">
         <v-select
           :items="items"
           label="What would you like to bookd today?"
           flat
           solo
+          :rules="[(v) => !!v || 'Item is required']"
+          required
           background-color="#C8ECFF"
         ></v-select>
 
@@ -15,6 +17,8 @@
           label="Choose a time"
           flat
           solo
+          :rules="[(v) => !!v || 'Item is required']"
+          required
           background-color="#C8ECFF"
         ></v-select>
 
@@ -162,6 +166,8 @@
           label="Number of children attending"
           flat
           solo
+          :rules="[(v) => !!v || 'Item is required']"
+          required
           background-color="#C8ECFF"
         ></v-select>
         <v-select
@@ -169,8 +175,24 @@
           label="Your child's age"
           flat
           solo
+          :rules="[(v) => !!v || 'Item is required']"
+          required
           background-color="#C8ECFF"
         ></v-select>
+
+        <v-row justify="center">
+          <v-col align="center" cols="12" sm="4">
+            <v-btn
+              :disabled="!valid"
+              color="success"
+              class="mr-4"
+              block
+              @click.prevent="validate"
+            >
+              Next
+            </v-btn>
+          </v-col>
+        </v-row>
       </v-form>
     </v-col>
   </v-row>
@@ -181,7 +203,7 @@ export default {
   name: 'Bookings',
   layout: 'navbar',
   data: () => ({
-    valid: true,
+    valid: false,
     charTime: [],
     addOns: {
       addHour: { title: 'Add 1 Hour', value: '' },
@@ -192,10 +214,9 @@ export default {
       popcorn: { title: 'Popcorn', value: '' },
       snacks: { title: 'Premium Snacks', value: '' },
       jape: { title: '1 Hour of Music and Movemnent with Jape', value: '' },
-      zumbini: { title: '30 Minutes of Zumbini' },
+      zumbini: { title: '30 Minutes of Zumbini', value: '' },
       pinata: { title: 'Piñata', value: '' }
     },
-    addHour: '',
     items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     showOneCharSelect: false,
     showTwoCharSelect: false,
@@ -250,6 +271,9 @@ export default {
         disable30Min,
         disable15Min
       }
+    },
+    validate() {
+      console.log(this.charTime, this.addOns)
     }
   }
 }
