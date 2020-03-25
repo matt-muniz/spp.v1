@@ -3,7 +3,9 @@
     <v-col cols="11" sm="6">
       <v-form ref="form" v-model="valid">
         <v-select
-          :items="items"
+          v-model="bookings.value"
+          :items="bookings"
+          :item-color="itemColor"
           label="What would you like to bookd today?"
           flat
           solo
@@ -13,7 +15,9 @@
         ></v-select>
 
         <v-select
-          :items="items"
+          v-model="time.value"
+          :items="time"
+          :item-color="itemColor"
           label="Choose a time"
           flat
           solo
@@ -38,14 +42,17 @@
                 :value="v1"
                 :disabled="disable15MinCheckbox"
                 :label="`15 minute rental: ${charTime}`"
-                @change="disableCheckbox"
+                :rules="[(v) => !!v || 'Item is required']"
+                required
+                @change="disable30MinCheckboxfunc"
               ></v-checkbox>
               <v-checkbox
                 v-model="charTime"
                 :disabled="disable30MinCheckbox"
                 :value="v2"
                 :label="`30 minute rental: ${charTime}`"
-                @change="disableCheckbox"
+                required
+                @change="disable15MinCheckboxfunc"
               ></v-checkbox>
             </div>
 
@@ -60,20 +67,22 @@
                 :value="v1"
                 :disabled="disable15MinCheckbox"
                 :label="`15 minute rental: ${charTime}`"
-                @change="disableCheckbox"
+                @change="disable30MinCheckboxfunc"
               ></v-checkbox>
               <v-checkbox
                 v-model="charTime"
                 :value="v2"
                 :disabled="disable30MinCheckbox"
                 :label="`30 minute rental: ${charTime}`"
-                @change="disableCheckbox"
+                @change="disable15MinCheckboxfunc"
               ></v-checkbox>
             </div>
             <v-checkbox
               v-model="addOns.addHour.value"
               true-value="100"
               false-value=""
+              :rules="[(v) => !!v || 'Item is required']"
+              required
               :label="`${addOns.addHour.title}: ${addOns.addHour.value}`"
             ></v-checkbox>
 
@@ -145,7 +154,9 @@
 
         <div v-if="showOneCharSelect">
           <v-select
-            :items="items"
+            v-model="characterOne.value"
+            :items="characterOne"
+            :item-color="itemColor"
             label="Select your character - 1"
             flat
             solo
@@ -154,7 +165,7 @@
         </div>
         <div v-if="showTwoCharSelect">
           <v-select
-            :items="items"
+            :items="characterTwo"
             label="Select your character - 2"
             flat
             solo
@@ -162,7 +173,7 @@
           ></v-select>
         </div>
         <v-select
-          :items="items"
+          :items="numChildren"
           label="Number of children attending"
           flat
           solo
@@ -171,7 +182,7 @@
           background-color="#C8ECFF"
         ></v-select>
         <v-select
-          :items="items"
+          :items="childsAge"
           label="Your child's age"
           flat
           solo
@@ -217,7 +228,25 @@ export default {
       zumbini: { title: '30 Minutes of Zumbini', value: '' },
       pinata: { title: 'Piñata', value: '' }
     },
-    items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+    bookings: [
+      { text: '$500 Party Package', value: '500' },
+      { text: '$350 Party Package', value: '350' }
+    ],
+    time: [
+      { text: '10AM - 12PM', value: '10' },
+      { text: '1PM - 3PM', value: '13' },
+      { text: '4PM - 6PM', value: '16' }
+    ],
+    characterOne: [
+      { text: '1', value: '1' },
+      { text: '2', value: '2' },
+      { text: '3', value: '3' }
+    ],
+    characterOneValue: '',
+    characterTwo: ['1'],
+    numChildren: ['1'],
+    childsAge: ['1'],
+    itemColor: 'primary',
     showOneCharSelect: false,
     showTwoCharSelect: false,
     showTimeCharOne: false,
@@ -256,24 +285,15 @@ export default {
       this.disable30MinCheckbox = false
       this.charTime = removeV1V2
     },
-    disableCheckbox() {
-      const disable30Min = this.charTime.filter((item) => {
-        item === '50' || item === '80'
-          ? (this.disable30MinCheckbox = true)
-          : (this.disable30MinCheckbox = false)
-      })
-      const disable15Min = this.charTime.filter((item) =>
-        item === '100' || item === '160'
-          ? (this.disable15MinCheckbox = true)
-          : (this.disable15MinCheckbox = false)
-      )
-      return {
-        disable30Min,
-        disable15Min
-      }
+    disable15MinCheckboxfunc() {
+      this.disable15MinCheckbox = !this.disable15MinCheckbox
+    },
+    disable30MinCheckboxfunc() {
+      this.disable30MinCheckbox = !this.disable30MinCheckbox
     },
     validate() {
-      console.log(this.charTime, this.addOns)
+      console.log(this.charTime, this.addOns.value)
+      console.log(this.bookings.value, this.characterOne.value)
     }
   }
 }
