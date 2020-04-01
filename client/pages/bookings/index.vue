@@ -42,7 +42,6 @@
                 :value="v1"
                 :disabled="disable15MinCheckbox"
                 :label="`15 minute rental: ${charTime}`"
-                :rules="[(v) => !!v || 'Item is required']"
                 required
                 @change="disable30MinCheckboxfunc"
               ></v-checkbox>
@@ -81,8 +80,6 @@
               v-model="addOns.addHour.value"
               true-value="100"
               false-value=""
-              :rules="[(v) => !!v || 'Item is required']"
-              required
               :label="`${addOns.addHour.title}: ${addOns.addHour.value}`"
             ></v-checkbox>
 
