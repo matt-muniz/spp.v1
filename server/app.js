@@ -9,7 +9,7 @@ const logs = require('./api/logs');
 
 require('dotenv').config();
 
-mongoose.connect(process.env.DATABASE_URL, {
+mongoose.connect(process.env.ATLAS_DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
